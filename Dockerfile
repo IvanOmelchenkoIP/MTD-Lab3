@@ -2,17 +2,14 @@ FROM python:3.10-buster
 
 WORKDIR /app/
 
-COPY . /app/
-
 RUN python -m venv ./.venv
-
 RUN . ./.venv/bin/activate
 
-RUN pip freeze > requirenments.txt
-
-RUN pip install -r requirenments.txt
-
+COPY . /app/
 RUN pip install -r ./requirements/backend.in
+
+RUN pip freeze > requirenments.txt
+RUN pip install -r requirenments.txt
 
 COPY . /app/
 
